@@ -1051,3 +1051,90 @@ plt.show()
 ![png](output_15_0.png)
     
 
+
+
+```python
+year= df['Release date[a]'].dt.year
+year
+```
+
+
+
+
+    0     2018
+    1     2018
+    2     2016
+    3     2015
+    4     2020
+    5     2017
+    6     2014
+    7     2020
+    8     2015
+    9     2017
+    10    2014
+    11    2018
+    12    2020
+    13    2018
+    14    2020
+    15    2016
+    16    2017
+    17    2016
+    18    2019
+    19    2013
+    20    2014
+    21    2015
+    22    2014
+    23    2013
+    24    2014
+    25    2017
+    26    2020
+    27    2016
+    28    2017
+    29    2015
+    30    2017
+    31    2019
+    32    2017
+    Name: Release date[a], dtype: int32
+
+
+
+
+```python
+from scipy.stats import norm
+
+# Assuming you have a DataFrame named 'df' with columns 'Year' and 'Copies sold'
+
+# Calculate mean and standard deviation of sales
+mean_sales = df['Copies sold'].mean()
+std_sales = df['Copies sold'].std()
+
+# Create the bar graph
+plt.figure(figsize=(10, 4))
+plt.bar(year, df['Copies sold'], color='steelblue')
+
+# Plotting the normal distribution curve
+x = np.linspace(year.min(), year.max(), 100)
+y = norm.pdf(x, mean_sales, std_sales) * df['Copies sold'].max()  # Scale the curve to match the Copies sold range
+plt.plot(x, y, 'r', lw=2)
+
+# Adding labels and titles
+plt.xlabel('Year')
+plt.ylabel('Copies sold')
+plt.title('Copies sold by Year')
+
+# Displaying the plot
+plt.tight_layout()
+plt.show()
+
+```
+
+
+    
+![png](output_17_0.png)
+    
+
+
+
+```python
+
+```
